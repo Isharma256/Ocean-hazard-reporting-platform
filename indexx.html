@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocean Hazard Reporting Platform - MVP</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #e6f7ff;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+        }
+        .reports {
+            margin-top: 20px;
+            background: #fff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Ocean Hazard Reporting Platform (MVP)</h1>
+
+<div class="form-box">
+    <input type="text" id="hazard" placeholder="Hazard Type (e.g. Oil Spill)">
+    <input type="text" id="location" placeholder="Location">
+    <textarea id="description" placeholder="Description"></textarea>
+    <button onclick="submitReport()">Submit Report</button>
+</div>
+
+<div class="reports" id="reportList">
+    <h3>Submitted Reports:</h3>
+</div>
+
+<script>
+function submitReport() {
+    var hazard = document.getElementById("hazard").value;
+    var location = document.getElementById("location").value;
+    var description = document.getElementById("description").value;
+
+    if(hazard === "" || location === "" || description === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    var reportDiv = document.createElement("div");
+    reportDiv.innerHTML = "<b>Hazard:</b> " + hazard + "<br>" +
+                          "<b>Location:</b> " + location + "<br>" +
+                          "<b>Description:</b> " + description + "<hr>";
+
+    document.getElementById("reportList").appendChild(reportDiv);
+
+    document.getElementById("hazard").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("description").value = "";
+}
+</script>
+
+</body>
+</html>
